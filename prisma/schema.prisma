@@ -1,0 +1,243 @@
+// This is your Prisma schema file
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// Modèle Utilisateur pour le backoffice
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  name      String
+  password  String
+  role      UserRole @default(AGENT)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  articles Article[]
+  @@map("users")
+}
+
+enum UserRole {
+  ADMIN
+  AGENT
+}
+
+// Modèle Article/Actualité
+model Article {
+  id          String   @id @default(cuid())
+  title       String
+  slug        String   @unique
+  content     String   @db.Text
+  excerpt     String?
+  imageUrl    String?
+  category    ArticleCategory
+  status      ArticleStatus @default(DRAFT)
+  publishedAt DateTime?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  authorId    String
+  author      User     @relation(fields: [authorId], references: [id])
+
+  @@map("articles")
+}
+
+enum ArticleCategory {
+  DIPLOMATIE
+  COMMUNAUTE
+  CULTURE
+  EVENEMENTS
+  ANNONCES_OFFICIELLES
+}
+
+enum ArticleStatus {
+  DRAFT
+  PUBLISHED
+  ARCHIVED
+}
+
+// Modèle pour les demandes de Visa
+model VisaApplication {
+  id                String            @id @default(cuid())
+  firstName         String
+  lastName          String
+  email             String
+  phone             String
+  nationality       String
+  passportNumber    String
+  dateOfBirth       DateTime
+  placeOfBirth      String
+  visaType          VisaType
+  purposeOfTravel   String            @db.Text
+  arrivalDate       DateTime
+  departureDate     DateTime
+  addressInTunisia  String?
+  photoUrl          String
+  passportCopyUrl   String
+  additionalDocs    String[]
+  status            ApplicationStatus @default(PENDING)
+  statusNote        String?           @db.Text
+  referenceNumber   String            @unique
+  submittedAt       DateTime          @default(now())
+  updatedAt         DateTime          @updatedAt
+
+  @@map("visa_applications")
+}
+
+enum VisaType {
+  TOURISME
+  AFFAIRES
+  ETUDES
+  TRAVAIL
+  TRANSIT
+}
+
+// Modèle pour les demandes de Carte Consulaire
+model ConsularCardApplication {
+  id                String            @id @default(cuid())
+  firstName         String
+  lastName          String
+  email             String
+  phone             String
+  dateOfBirth       DateTime
+  placeOfBirth      String
+  nationality       String
+  passportNumber    String
+  addressInTunisia  String
+  profession        String
+  photoUrl          String
+  passportCopyUrl   String
+  proofOfResidence  String
+  status            ApplicationStatus @default(PENDING)
+  statusNote        String?           @db.Text
+  referenceNumber   String            @unique
+  submittedAt       DateTime          @default(now())
+  updatedAt         DateTime          @updatedAt
+
+  @@map("consular_card_applications")
+}
+
+// Modèle pour les demandes de Laissez-Passer
+model TravelDocumentApplication {
+  id                String            @id @default(cuid())
+  firstName         String
+  lastName          String
+  email             String
+  phone             String
+  dateOfBirth       DateTime
+  placeOfBirth      String
+  nationality       String
+  reason            String            @db.Text
+  destination       String
+  travelDate        DateTime
+  photoUrl          String
+  identityProof     String
+  additionalDocs    String[]
+  status            ApplicationStatus @default(PENDING)
+  statusNote        String?           @db.Text
+  referenceNumber   String            @unique
+  submittedAt       DateTime          @default(now())
+  updatedAt         DateTime          @updatedAt
+
+  @@map("travel_document_applications")
+}
+
+// Modèle pour les Actes d'État Civil
+model CivilStatusDocument {
+  id                String            @id @default(cuid())
+  documentType      CivilDocumentType
+  firstName         String
+  lastName          String
+  email             String
+  phone             String
+  dateOfBirth       DateTime
+  placeOfBirth      String
+  fatherName        String?
+  motherName        String?
+  purpose           String
+  numberOfCopies    Int               @default(1)
+  supportingDocs    String[]
+  status            ApplicationStatus @default(PENDING)
+  statusNote        String?           @db.Text
+  referenceNumber   String            @unique
+  submittedAt       DateTime          @default(now())
+  updatedAt         DateTime          @updatedAt
+
+  @@map("civil_status_documents")
+}
+
+enum CivilDocumentType {
+  ACTE_NAISSANCE
+  ACTE_MARIAGE
+  ACTE_DECES
+  CERTIFICAT_CELIBAT
+  CERTIFICAT_VIE
+}
+
+// Modèle pour les Actes Consulaires
+model ConsularDocument {
+  id                String            @id @default(cuid())
+  documentType      ConsularDocumentType
+  firstName         String
+  lastName          String
+  email             String
+  phone             String
+  purpose           String            @db.Text
+  documentToLegalize String?
+  supportingDocs    String[]
+  status            ApplicationStatus @default(PENDING)
+  statusNote        String?           @db.Text
+  referenceNumber   String            @unique
+  submittedAt       DateTime          @default(now())
+  updatedAt         DateTime          @updatedAt
+
+  @@map("consular_documents")
+}
+
+enum ConsularDocumentType {
+  LEGALISATION
+  ATTESTATION
+  PROCURATION
+  CERTIFICAT_COUTUME
+  AUTRE
+}
+
+enum ApplicationStatus {
+  PENDING       // En attente
+  IN_REVIEW     // En cours d'examen
+  APPROVED      // Approuvé
+  READY         // Prêt pour retrait
+  REJECTED      // Rejeté
+  COMPLETED     // Complété
+}
+
+// Modèle pour les messages de contact
+model ContactMessage {
+  id        String   @id @default(cuid())
+  name      String
+  email     String
+  subject   String
+  message   String   @db.Text
+  read      Boolean  @default(false)
+  createdAt DateTime @default(now())
+
+  @@map("contact_messages")
+}
+
+// Modèle pour les paramètres du site
+model SiteSetting {
+  id          String   @id @default(cuid())
+  key         String   @unique
+  value       String   @db.Text
+  description String?
+  updatedAt   DateTime @updatedAt
+
+  @@map("site_settings")
+}
+
+

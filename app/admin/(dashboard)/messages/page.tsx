@@ -1,11 +1,16 @@
 import { prisma } from '@/lib/prisma';
-import { Mail, MailOpen } from 'lucide-react';
+import { Mail, MailOpen, Eye, Trash } from 'lucide-react';
+import Link from 'next/link';
+import { format } from 'date-fns';
+import { fr } from 'date-fns/locale';
 
 async function getMessages() {
   return await prisma.contactMessage.findMany({
     orderBy: { createdAt: 'desc' },
   });
 }
+
+export const dynamic = 'force-dynamic';
 
 export default async function MessagesPage() {
   const messages = await getMessages();
@@ -58,6 +63,7 @@ export default async function MessagesPage() {
               <th>Sujet</th>
               <th>Date</th>
               <th>Message</th>
+              <th>Actions</th>
             </tr>
           </thead>
           <tbody>
@@ -74,10 +80,21 @@ export default async function MessagesPage() {
                 <td className="text-sm text-gray-600">{message.email}</td>
                 <td className="font-medium">{message.subject}</td>
                 <td className="text-sm">
-                  {new Date(message.createdAt).toLocaleDateString('fr-FR')}
+                  {format(new Date(message.createdAt), 'dd/MM/yyyy HH:mm', { locale: fr })}
                 </td>
                 <td className="max-w-md truncate text-sm text-gray-600">
                   {message.message}
+                </td>
+                <td>
+                  <div className="flex gap-2">
+                    <Link
+                      href={`/admin/messages/${message.id}`}
+                      className="text-congo-600 hover:text-congo-700"
+                      title="Voir le détail"
+                    >
+                      <Eye className="h-4 w-4" />
+                    </Link>
+                  </div>
                 </td>
               </tr>
             ))}

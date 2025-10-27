@@ -8,10 +8,13 @@ export default async function AdminLayout({
 }: {
   children: React.ReactNode;
 }) {
+  // Ne pas vérifier la session sur la page de login
   const session = await getServerSession(authOptions);
 
+  // Rediriger vers login uniquement si pas de session
+  // et que ce n'est pas déjà la page de login
   if (!session) {
-    redirect('/admin/login');
+    return redirect('/admin/login');
   }
 
   return (

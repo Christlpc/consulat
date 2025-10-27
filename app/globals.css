@@ -14,6 +14,84 @@
   }
 }
 
+/* Styles d'impression pour les documents */
+@media print {
+  @page {
+    size: A4;
+    margin: 2cm;
+  }
+
+  body {
+    font-size: 12pt;
+    line-height: 1.5;
+    color: #000;
+  }
+
+  /* Masquer les éléments non imprimables */
+  .print\:hidden,
+  nav,
+  aside,
+  button:not(.print\:block),
+  [class*="shadow"],
+  .no-print {
+    display: none !important;
+  }
+
+  /* Afficher les éléments pour impression */
+  .print\:block {
+    display: block !important;
+  }
+
+  /* Éviter les sauts de page inappropriés */
+  .print\:break-inside-avoid,
+  table,
+  pre,
+  blockquote,
+  img {
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+
+  /* Styles pour les documents officiels */
+  h1 {
+    font-size: 18pt;
+    margin-bottom: 1em;
+  }
+
+  h2 {
+    font-size: 14pt;
+    margin-top: 1em;
+    margin-bottom: 0.5em;
+  }
+
+  /* Bordures pour l'impression */
+  .border {
+    border: 1px solid #000 !important;
+  }
+
+  /* Fond pour l'impression */
+  .bg-yellow-50,
+  .bg-gray-50 {
+    background-color: #f9f9f9 !important;
+  }
+
+  /* Liens pour l'impression */
+  a[href]:after {
+    content: none;
+  }
+
+  /* Tables pour l'impression */
+  table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+
+  th, td {
+    border: 1px solid #000;
+    padding: 8px;
+  }
+}
+
 @layer components {
   .container {
     @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;

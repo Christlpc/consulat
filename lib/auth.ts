@@ -6,6 +6,7 @@ import { prisma } from '@/lib/prisma';
 export const authOptions: NextAuthOptions = {
   session: {
     strategy: 'jwt',
+    maxAge: 30 * 24 * 60 * 60, // 30 jours
   },
   pages: {
     signIn: '/admin/login',
@@ -61,6 +62,26 @@ export const authOptions: NextAuthOptions = {
         session.user.id = token.id as string;
       }
       return session;
+    },
+  },
+  // Configuration essentielle pour la production
+  secret: process.env.NEXTAUTH_SECRET,
+  
+  // Important pour Vercel
+  trustHost: true,
+  
+  // Configuration des cookies pour HTTPS (production)
+  cookies: {
+    sessionToken: {
+      name: process.env.NODE_ENV === 'production' 
+        ? '__Secure-next-auth.session-token' 
+        : 'next-auth.session-token',
+      options: {
+        httpOnly: true,
+        sameSite: 'lax',
+        path: '/',
+        secure: process.env.NODE_ENV === 'production',
+      },
     },
   },
 };

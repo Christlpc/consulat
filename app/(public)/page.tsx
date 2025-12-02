@@ -49,6 +49,17 @@ export default function HomePage() {
     <>
       {/* Hero Section */}
       <section className="relative bg-gradient-to-br from-congo-600 via-congo-500 to-congo-700 text-white overflow-hidden">
+        {/* Image de fond */}
+        <div className="absolute inset-0">
+          <Image
+            src="/bzv.jpg"
+            alt=""
+            fill
+            className="object-cover opacity-20"
+            priority
+          />
+        </div>
+        <div className="absolute inset-0 bg-gradient-to-br from-congo-600/90 via-congo-500/90 to-congo-700/90"></div>
         <div className="absolute inset-0 bg-[url('/pattern.svg')] opacity-10"></div>
         <div className="container py-20 md:py-32 relative z-10">
           <div className="grid md:grid-cols-2 gap-12 items-center">

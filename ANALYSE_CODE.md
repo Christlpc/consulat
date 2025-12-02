@@ -529,3 +529,5 @@ Le projet est bien structuré et utilise des technologies modernes. Les principa
 *Analyse effectuée le: $(date)*
 *Version du code analysée: 1.0.0*
 
+
+

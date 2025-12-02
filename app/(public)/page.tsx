@@ -46,20 +46,33 @@ const services = [
 
 export default function HomePage() {
   return (
-    <>
+    <div className="relative min-h-screen">
+      {/* Image de fond pour toute la page */}
+      <div className="fixed inset-0 -z-10">
+        <Image
+          src="/bzv.jpg"
+          alt=""
+          fill
+          className="object-cover opacity-60"
+          priority
+          quality={90}
+        />
+        <div className="absolute inset-0 bg-white/20"></div>
+      </div>
+
       {/* Hero Section */}
       <section className="relative bg-gradient-to-br from-congo-600 via-congo-500 to-congo-700 text-white overflow-hidden">
-        {/* Image de fond */}
+        {/* Image de fond pour la section Hero */}
         <div className="absolute inset-0">
           <Image
             src="/bzv.jpg"
             alt=""
             fill
-            className="object-cover opacity-20"
+            className="object-cover opacity-40"
             priority
           />
         </div>
-        <div className="absolute inset-0 bg-gradient-to-br from-congo-600/90 via-congo-500/90 to-congo-700/90"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-congo-600/75 via-congo-500/75 to-congo-700/75"></div>
         <div className="absolute inset-0 bg-[url('/pattern.svg')] opacity-10"></div>
         <div className="container py-20 md:py-32 relative z-10">
           <div className="grid md:grid-cols-2 gap-12 items-center">
@@ -69,7 +82,7 @@ export default function HomePage() {
                 <span className="text-sm font-medium">Services Consulaires en Ligne</span>
               </div>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold leading-tight">
-                Consulat Général de la République du Congo
+                Consulat Général de la République du Congo en Tunisie
               </h1>
               <p className="text-xl text-congo-50 max-w-xl">
                 Au service de la communauté congolaise en Tunisie et des ressortissants étrangers. Services consulaires modernes et efficaces.
@@ -105,8 +118,9 @@ export default function HomePage() {
       </section>
 
       {/* Services Section */}
-      <section className="py-20 bg-gray-50">
-        <div className="container">
+      <section className="py-20 relative">
+        <div className="absolute inset-0 bg-white/30 backdrop-blur-sm"></div>
+        <div className="container relative z-10">
           <div className="text-center mb-16 animate-fadeInUp">
             <h2 className="text-3xl md:text-4xl font-display font-bold text-gray-900 mb-4">
               Nos Services Consulaires
@@ -143,7 +157,7 @@ export default function HomePage() {
               </h3>
               <p className="text-gray-600">
                 Lundi - Vendredi<br />
-                09:00 - 16:00
+                09:00 - 12:00
               </p>
             </div>
 
@@ -201,7 +215,7 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-    </>
+    </div>
   );
 }
 

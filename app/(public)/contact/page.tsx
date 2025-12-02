@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { MapPin, Phone, Mail, Clock } from 'lucide-react';
+import { Building2, PhoneCall, MessageCircle, CalendarClock, Users } from 'lucide-react';
 import FormField from '@/components/FormField';
 import TextAreaField from '@/components/TextAreaField';
 
@@ -55,23 +55,23 @@ export default function ContactPage() {
         <div className="grid lg:grid-cols-2 gap-12">
           {/* Informations de contact */}
           <div className="space-y-6">
-            <div className="flex items-start gap-4 p-6 bg-gray-50 rounded-xl">
-              <div className="flex-shrink-0 w-12 h-12 bg-congo-100 rounded-full flex items-center justify-center">
-                <MapPin className="h-6 w-6 text-congo-600" />
+            <div className="flex items-start gap-4 p-6 bg-gray-50 rounded-xl hover:bg-congo-50 transition-colors">
+              <div className="flex-shrink-0 w-14 h-14 bg-gradient-to-br from-congo-500 to-congo-600 rounded-full flex items-center justify-center shadow-lg">
+                <Building2 className="h-7 w-7 text-white" />
               </div>
               <div>
                 <h3 className="font-bold text-lg text-gray-900 mb-2">Adresse</h3>
                 <p className="text-gray-600">
-                  Rue du Lac Léman, Immeuble Lac 2000<br />
-                  Les Berges du Lac 1053<br />
+                5 Rue Baalabek 2037<br />
+                El Menzah 5<br />
                   Tunis, Tunisie
                 </p>
               </div>
             </div>
 
-            <div className="flex items-start gap-4 p-6 bg-gray-50 rounded-xl">
-              <div className="flex-shrink-0 w-12 h-12 bg-congo-100 rounded-full flex items-center justify-center">
-                <Phone className="h-6 w-6 text-congo-600" />
+            <div className="flex items-start gap-4 p-6 bg-gray-50 rounded-xl hover:bg-congo-50 transition-colors">
+              <div className="flex-shrink-0 w-14 h-14 bg-gradient-to-br from-congo-500 to-congo-600 rounded-full flex items-center justify-center shadow-lg">
+                <PhoneCall className="h-7 w-7 text-white" />
               </div>
               <div>
                 <h3 className="font-bold text-lg text-gray-900 mb-2">Téléphone</h3>
@@ -79,9 +79,9 @@ export default function ContactPage() {
               </div>
             </div>
 
-            <div className="flex items-start gap-4 p-6 bg-gray-50 rounded-xl">
-              <div className="flex-shrink-0 w-12 h-12 bg-congo-100 rounded-full flex items-center justify-center">
-                <Mail className="h-6 w-6 text-congo-600" />
+            <div className="flex items-start gap-4 p-6 bg-gray-50 rounded-xl hover:bg-congo-50 transition-colors">
+              <div className="flex-shrink-0 w-14 h-14 bg-gradient-to-br from-congo-500 to-congo-600 rounded-full flex items-center justify-center shadow-lg">
+                <MessageCircle className="h-7 w-7 text-white" />
               </div>
               <div>
                 <h3 className="font-bold text-lg text-gray-900 mb-2">Email</h3>
@@ -89,14 +89,14 @@ export default function ContactPage() {
               </div>
             </div>
 
-            <div className="flex items-start gap-4 p-6 bg-gray-50 rounded-xl">
-              <div className="flex-shrink-0 w-12 h-12 bg-congo-100 rounded-full flex items-center justify-center">
-                <Clock className="h-6 w-6 text-congo-600" />
+            <div className="flex items-start gap-4 p-6 bg-gray-50 rounded-xl hover:bg-congo-50 transition-colors">
+              <div className="flex-shrink-0 w-14 h-14 bg-gradient-to-br from-congo-500 to-congo-600 rounded-full flex items-center justify-center shadow-lg">
+                <CalendarClock className="h-7 w-7 text-white" />
               </div>
               <div>
                 <h3 className="font-bold text-lg text-gray-900 mb-2">Horaires d'ouverture</h3>
                 <div className="text-gray-600 space-y-1">
-                  <p>Lundi - Vendredi : 09:00 - 16:00</p>
+                  <p>Lundi - Vendredi : 09:00 - 12:00</p>
                   <p>Samedi - Dimanche : Fermé</p>
                   <p className="text-sm text-gray-500 mt-2">
                     Fermé les jours fériés tunisiens et congolais.
@@ -105,11 +105,19 @@ export default function ContactPage() {
               </div>
             </div>
 
-            {/* Carte (placeholder) */}
-            <div className="aspect-video bg-gray-200 rounded-xl overflow-hidden">
-              <div className="w-full h-full flex items-center justify-center text-gray-500">
-                <MapPin className="h-12 w-12" />
-              </div>
+            {/* Carte Google Maps */}
+            <div className="aspect-video rounded-xl overflow-hidden border-2 border-congo-200 shadow-lg">
+              <iframe
+                src="https://www.google.com/maps?q=5+Rue+Baalabek+2037+El+Menzah+5+Tunis+Tunisie&output=embed"
+                width="100%"
+                height="100%"
+                style={{ border: 0 }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                className="w-full h-full"
+                title="Localisation du Consulat Général de la République du Congo en Tunisie"
+              ></iframe>
             </div>
           </div>
 

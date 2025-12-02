@@ -106,7 +106,7 @@ export default function Footer() {
             <ul className="space-y-3">
               <li className="flex items-start gap-3 text-sm">
                 <MapPin className="h-5 w-5 text-congo-400 flex-shrink-0 mt-0.5" />
-                <span>Rue du Lac Léman, Immeuble Lac 2000, Les Berges du Lac 1053, Tunis, Tunisie</span>
+                <span>5 Rue Baalabek 2037,El Menzah 5, Tunis, Tunisie</span>
               </li>
               <li className="flex items-center gap-3 text-sm">
                 <Phone className="h-5 w-5 text-congo-400 flex-shrink-0" />
@@ -119,7 +119,7 @@ export default function Footer() {
               <li className="flex items-start gap-3 text-sm">
                 <Clock className="h-5 w-5 text-congo-400 flex-shrink-0 mt-0.5" />
                 <div>
-                  <div>Lundi - Vendredi : 09:00 - 16:00</div>
+                  <div>Lundi - Vendredi : 09:00 - 12:00</div>
                   <div>Samedi - Dimanche : Fermé</div>
                 </div>
               </li>

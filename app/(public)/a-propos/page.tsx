@@ -3,10 +3,34 @@ import { Target, Users, Globe, Heart, Shield, Briefcase } from 'lucide-react';
 
 export default function AboutPage() {
   return (
-    <div className="py-20">
+    <div className="relative min-h-screen py-20">
+      {/* Image de fond pour toute la page */}
+      <div className="fixed inset-0 -z-10">
+        <Image
+          src="/bzv.jpg"
+          alt=""
+          fill
+          className="object-cover opacity-60"
+          priority
+          quality={90}
+        />
+        <div className="absolute inset-0 bg-white/20"></div>
+      </div>
+
       {/* Hero Section */}
-      <section className="gradient-congo text-white py-20 mb-20">
-        <div className="container">
+      <section className="relative gradient-congo text-white py-20 mb-20 overflow-hidden">
+        {/* Image de fond pour la section Hero */}
+        <div className="absolute inset-0">
+          <Image
+            src="/bzv.jpg"
+            alt=""
+            fill
+            className="object-cover opacity-40"
+            priority
+          />
+        </div>
+        <div className="absolute inset-0 bg-gradient-to-br from-congo-600/75 via-congo-500/75 to-congo-700/75"></div>
+        <div className="container relative z-10">
           <div className="max-w-4xl mx-auto text-center">
             <Image
               src="/armoirie-Congo.png"
@@ -25,7 +49,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <div className="container max-w-6xl">
+      <div className="container max-w-6xl relative z-10">
         {/* Notre Mission */}
         <section className="mb-20">
           <div className="grid md:grid-cols-2 gap-12 items-center">
@@ -121,11 +145,13 @@ export default function AboutPage() {
         </section>
 
         {/* Nos Services */}
-        <section className="mb-20 bg-gray-50 rounded-xl p-8 md:p-12">
-          <h2 className="text-3xl md:text-4xl font-display font-bold text-gray-900 mb-8">
-            Nos Services Principaux
-          </h2>
-          <div className="grid md:grid-cols-2 gap-6">
+        <section className="mb-20 relative rounded-xl p-8 md:p-12">
+          <div className="absolute inset-0 bg-white/30 backdrop-blur-sm rounded-xl"></div>
+          <div className="relative z-10">
+            <h2 className="text-3xl md:text-4xl font-display font-bold text-gray-900 mb-8">
+              Nos Services Principaux
+            </h2>
+            <div className="grid md:grid-cols-2 gap-6">
             <div className="flex gap-4">
               <div className="flex-shrink-0 w-12 h-12 bg-congo-500 rounded-lg flex items-center justify-center">
                 <Shield className="h-6 w-6 text-white" />
@@ -173,6 +199,7 @@ export default function AboutPage() {
                 </p>
               </div>
             </div>
+          </div>
           </div>
         </section>
 

@@ -67,9 +67,6 @@ export const authOptions: NextAuthOptions = {
   // Configuration essentielle pour la production
   secret: process.env.NEXTAUTH_SECRET,
   
-  // Important pour Vercel
-  trustHost: true,
-  
   // Configuration des cookies pour HTTPS (production)
   cookies: {
     sessionToken: {

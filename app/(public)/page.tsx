@@ -77,7 +77,7 @@ export default function HomePage() {
         <div className="container py-20 md:py-32 relative z-10">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div className="space-y-6 animate-fadeInUp">
-              <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2">
+              <div className="inline-flex items-center gap-2 bg-white/10 rounded-full px-4 py-2">
                 <div className="w-2 h-2 bg-gold-400 rounded-full animate-pulse"></div>
                 <span className="text-sm font-medium">Services Consulaires en Ligne</span>
               </div>
@@ -99,7 +99,7 @@ export default function HomePage() {
               </div>
             </div>
             <div className="relative animate-fadeInUp animation-delay-200">
-              <div className="relative bg-white/10 backdrop-blur-lg rounded-2xl p-8 border border-white/20">
+              <div className="relative bg-white/10 rounded-2xl p-8 border border-white/20">
                 <Image
                   src="/armoirie-Congo.png"
                   alt="Armoiries de la République du Congo"
@@ -119,7 +119,6 @@ export default function HomePage() {
 
       {/* Services Section */}
       <section className="py-20 relative">
-        <div className="absolute inset-0 bg-white/30 backdrop-blur-sm"></div>
         <div className="container relative z-10">
           <div className="text-center mb-16 animate-fadeInUp">
             <h2 className="text-3xl md:text-4xl font-display font-bold text-gray-900 mb-4">
@@ -130,16 +129,33 @@ export default function HomePage() {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {services.map((service, index) => (
-              <div
-                key={service.title}
-                className="animate-fadeInUp"
-                style={{ animationDelay: `${index * 100}ms` }}
-              >
-                <ServiceCard {...service} />
+          <div className="space-y-6">
+            {/* Première ligne : 3 cartes */}
+            <div className="grid md:grid-cols-3 gap-6">
+              {services.slice(0, 3).map((service, index) => (
+                <div
+                  key={service.title}
+                  className="animate-fadeInUp"
+                  style={{ animationDelay: `${index * 100}ms` }}
+                >
+                  <ServiceCard {...service} />
+                </div>
+              ))}
+            </div>
+            {/* Deuxième ligne : 2 cartes centrées */}
+            <div className="flex justify-center">
+              <div className="grid md:grid-cols-2 gap-6 max-w-2xl w-full">
+                {services.slice(3, 5).map((service, index) => (
+                  <div
+                    key={service.title}
+                    className="animate-fadeInUp"
+                    style={{ animationDelay: `${(index + 3) * 100}ms` }}
+                  >
+                    <ServiceCard {...service} />
+                  </div>
+                ))}
               </div>
-            ))}
+            </div>
           </div>
         </div>
       </section>
@@ -157,7 +173,7 @@ export default function HomePage() {
               </h3>
               <p className="text-gray-600">
                 Lundi - Vendredi<br />
-                09:00 - 12:00
+                9h - 13h
               </p>
             </div>
 

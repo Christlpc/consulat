@@ -146,7 +146,6 @@ export default function AboutPage() {
 
         {/* Nos Services */}
         <section className="mb-20 relative rounded-xl p-8 md:p-12">
-          <div className="absolute inset-0 bg-white/30 backdrop-blur-sm rounded-xl"></div>
           <div className="relative z-10">
             <h2 className="text-3xl md:text-4xl font-display font-bold text-gray-900 mb-8">
               Nos Services Principaux
@@ -447,7 +446,7 @@ export default function AboutPage() {
               <h3 className="font-bold mb-2">Horaires</h3>
               <p className="text-congo-100">
                 Lundi - Vendredi<br />
-                09:00 - 16:00
+                9h - 13h
               </p>
             </div>
             <div>

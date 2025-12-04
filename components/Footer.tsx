@@ -41,7 +41,7 @@ export default function Footer() {
                 <div className="text-white font-bold text-lg">
                   Consulat du Congo
                 </div>
-                <div className="text-xs">en Tunisie</div>
+                <div className="text-white font-bold text-lg">en Tunisie</div>
               </div>
             </div>
             <p className="text-sm text-gray-400">
@@ -119,7 +119,7 @@ export default function Footer() {
               <li className="flex items-start gap-3 text-sm">
                 <Clock className="h-5 w-5 text-congo-400 flex-shrink-0 mt-0.5" />
                 <div>
-                  <div>Lundi - Vendredi : 09:00 - 12:00</div>
+                  <div>Lundi - Vendredi : 9h - 13h</div>
                   <div>Samedi - Dimanche : Fermé</div>
                 </div>
               </li>
